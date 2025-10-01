@@ -1,0 +1,404 @@
+{
+  "style": {
+    "version": 8,
+    "id": "dark-blue",
+    "name": "DarkBlue",
+    "metadata": {},
+    "glyphs": "{UI_SERVER_HOSTNAME}/map/glyphs/{fontstack}/{range}.pbf",
+    "light": {
+      "anchor": "viewport",
+      "color": "#fff",
+      "intensity": 0.6
+    },
+    "sprite": "{UI_SERVER_HOSTNAME}/map/molit_sprite@2x",
+    "sources": {
+      "water": {
+        "url": "https://martin.ssrhouse.store/N3A_E0032111",
+        "type": "vector"
+      },
+      "sido": {
+        "url": "https://martin.ssrhouse.store/N3A_G0010000",
+        "type": "vector"
+      },
+      "sigungu": {
+        "url": "https://martin.ssrhouse.store/N3A_G0100000",
+        "type": "vector"
+      },
+      "umd": {
+        "url": "https://martin.ssrhouse.store/N3A_G0110000",
+        "type": "vector"
+      },
+      "forest": {
+        "url": "https://martin.ssrhouse.store/TB_FGDI_CNMP_ALL",
+        "type": "vector"
+      },
+      "road_seoul": {
+        "url": "https://martin.ssrhouse.store/N3L_A0020000_11",
+        "type": "vector"
+      },
+      "tn_ex_subwln_l": {
+        "type": "vector",
+        "url": "https://martin.ssrhouse.store/tn_ex_subwln_l"
+      },
+      "tn_ex_subwa_a": {
+        "type": "vector",
+        "url": "https://martin.ssrhouse.store/tn_ex_subwa_a"
+      },
+      "building_seoul": {
+        "url": "https://martin.ssrhouse.store/N3A_B0010000_11",
+        "type": "vector"
+      }
+    },
+    "layers": [
+      {
+        "id": "background",
+        "type": "background",
+        "paint": {
+          "background-color": "#0099cc"
+        }
+      },
+      {
+        "id": "sido",
+        "type": "fill",
+        "source": "sido",
+        "source-layer": "N3A_G0010000",
+        "layout": {
+          "visibility": "visible"
+        },
+        "maxzoom": 10.5,
+        "paint": {
+          "fill-color": "#1a2636",
+          "fill-opacity": 1,
+          "fill-antialias": true,
+          "fill-outline-color": [
+            "interpolate",
+            ["exponential", 1.5],
+            ["zoom"],
+            9,
+            "#7faaff",
+            10.5,
+            "#1a2636"
+          ]
+        }
+      },
+      {
+        "id": "sigungu",
+        "type": "fill",
+        "source": "sigungu",
+        "source-layer": "N3A_G0100000",
+        "layout": {
+          "visibility": "visible"
+        },
+        "minzoom": 10.5,
+        "maxzoom": 12.2,
+        "paint": {
+          "fill-color": "#1a2636",
+          "fill-opacity": 1,
+          "fill-antialias": true,
+          "fill-outline-color": [
+            "interpolate",
+            ["exponential", 1.5],
+            ["zoom"],
+            10.5,
+            "#1a2636",
+            11.5,
+            "#7faaff",
+            12.2,
+            "#1a2636"
+          ]
+        }
+      },
+      {
+        "id": "umd",
+        "type": "fill",
+        "source": "umd",
+        "source-layer": "N3A_G0110000",
+        "layout": {
+          "visibility": "visible"
+        },
+        "minzoom": 12.2,
+        "paint": {
+          "fill-color": "#1a2636",
+          "fill-opacity": 1,
+          "fill-antialias": true,
+          "fill-outline-color": [
+            "interpolate",
+            ["exponential", 1.5],
+            ["zoom"],
+            12.2,
+            "#1a2636",
+            12.7,
+            "#7faaff",
+            14.2,
+            "#1a2636"
+          ]
+        }
+      },
+      {
+        "id": "forest",
+        "type": "fill",
+        "minzoom": 10.5,
+        "paint": {
+          "fill-color": [
+            "interpolate",
+            ["exponential", 1.5],
+            ["zoom"],
+            10.5,
+            "#1a2636",
+            12.2,
+            "#1e3d2f"
+          ],
+          "fill-opacity": 1,
+          "fill-antialias": false
+        },
+        "layout": { "visibility": "visible" },
+        "source": "forest",
+        "source-layer": "TB_FGDI_CNMP_ALL"
+      },
+      {
+        "id": "water",
+        "type": "fill",
+        "source": "water",
+        "source-layer": "N3A_E0032111",
+        "paint": {
+          "fill-color": "#0099cc",
+          "fill-opacity": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            10.0,
+            0,
+            11,
+            0.7
+          ],
+          "fill-antialias": true,
+          "fill-outline-color": [
+            "interpolate",
+            ["exponential", 1.5],
+            ["zoom"],
+            18,
+            "rgba(148, 173, 202, 0.4)",
+            24,
+            "rgba(148, 173, 202, 0.7)"
+          ]
+        }
+      },
+      {
+        "id": "road_seoul",
+        "type": "line",
+        "source": "road_seoul",
+        "source-layer": "N3L_A0020000_11",
+        "layout": {
+          "line-cap": "round",
+          "visibility": "visible",
+          "line-round-limit": 1.05
+        },
+        "minzoom": 13.8,
+        "paint": {
+          "line-blur": 0,
+          "line-color": "#3e5a8c",
+          "line-width": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            13.8,
+            ["interpolate", ["linear"], ["get", "rvwd"], 5, 1, 20, 4],
+            16,
+            ["interpolate", ["linear"], ["get", "rvwd"], 5, 3, 20, 12]
+          ],
+          "line-opacity": [
+            "interpolate",
+            ["exponential", 1.5],
+            ["zoom"],
+            13.8,
+            0,
+            14.4,
+            1
+          ]
+        }
+      },
+      {
+        "id": "TN_EX_SUBWLN_L",
+        "type": "line",
+        "metadata": { "maputnik:comment": "지하철노선_L12-14" },
+        "source": "tn_ex_subwln_l",
+        "source-layer": "tn_ex_subwln_l",
+        "minzoom": 13,
+        "layout": { "visibility": "visible" },
+        "paint": {
+          "line-color": {
+            "property": "name",
+            "type": "categorical",
+            "stops": [
+              ["서울1호선", "rgb(0,82,164)"],
+              ["서울2호선", "rgb(0,168,77)"],
+              ["서울3호선", "rgb(239,124,28)"],
+              ["서울4호선", "rgb(0,164,227)"],
+              ["서울5호선", "rgb(153,108,172)"],
+              ["서울6호선", "rgb(205,124,47)"],
+              ["서울7호선", "rgb(116,127,0)"],
+              ["서울8호선", "rgb(230,16,107)"],
+              ["서울9호선", "rgb(189,176,146)"],
+              ["경강선", "rgb(0,91,172)"],
+              ["경의중앙선", "rgb(119,196,163)"],
+              ["경춘선", "rgb(12,142,114)"],
+              ["공항철도", "rgb(0,144,210)"],
+              ["분당선", "rgb(250,190,0)"],
+              ["수인분당선", "rgb(250,190,0)"],
+              ["신분당선", "rgb(212,0,59)"],
+              ["에버라인", "rgb(92,181,49)"],
+              ["의정부경전철", "rgb(248,177,0)"],
+              ["인천공항자기부상철도", "rgb(255,205,18)"],
+              ["인천1호선", "rgb(151,187,223)"],
+              ["인천2호선", "rgb(243,152,0)"],
+              ["광주1호선", "rgb(0,144,136)"],
+              ["대구1호선", "rgb(217,63,92)"],
+              ["대구2호선", "rgb(0,170,128)"],
+              ["대구3호선", "rgb(255,177,0)"],
+              ["대전1호선", "rgb(0,116,72)"],
+              ["부산1호선", "rgb(240,106,0)"],
+              ["부산2호선", "rgb(129,191,72)"],
+              ["부산3호선", "rgb(187,140,0)"],
+              ["부산4호선", "rgb(33,125,203)"],
+              ["부산경전철", "rgb(134,82,161)"],
+              ["우이신설선", "rgb(176,206,24)"],
+              ["동해선", "rgb(0,61,165)"],
+              ["서해선", "rgb(129,169,20)"],
+              ["김포골드라인", "rgb(161,120,0)"],
+              ["신림선", "rgb(103,137,202)"]
+            ],
+            "default": {
+              "property": "sub_cd",
+              "type": "categorical",
+              "stops": [
+                ["RRC001", "rgb(0,0,0)"],
+                ["RRC002", "rgb(184,184,184)"]
+              ]
+            }
+          },
+          "line-width": {
+            "property": "sub_cd",
+            "type": "categorical",
+            "stops": [
+              ["RRC001", 2.5],
+              ["RRC002", 4.5]
+            ],
+            "default": 2
+          }
+        }
+      },
+      {
+        "id": "TN_EX_SUBWA_A",
+        "type": "fill",
+        "metadata": { "maputnik:comment": "지하철역사" },
+        "source": "tn_ex_subwa_a",
+        "source-layer": "tn_ex_subwa_a",
+        "minzoom": 16,
+        "layout": { "visibility": "visible" },
+        "paint": {
+          "fill-color": {
+            "property": "line_name",
+            "type": "categorical",
+            "stops": [
+              ["서울지하철1호선", "rgb(0,82,164)"],
+              ["서울지하철2호선", "rgb(0,168,77)"],
+              ["서울지하철3호선", "rgb(239,124,28)"],
+              ["서울지하철4호선", "rgb(0,164,227)"],
+              ["서울지하철5호선", "rgb(153,108,172)"],
+              ["서울지하철6호선", "rgb(205,124,47)"],
+              ["서울지하철7호선", "rgb(116,127,0)"],
+              ["서울지하철8호선", "rgb(230,16,107)"],
+              ["서울지하철9호선", "rgb(189,176,146)"],
+              ["경강선", "rgb(0,91,172)"],
+              ["경의중앙선", "rgb(119,196,163)"],
+              ["경춘선", "rgb(12,142,114)"],
+              ["공항철도", "rgb(0,144,210)"],
+              ["분당선", "rgb(250,190,0)"],
+              ["수인분당선", "rgb(250,190,0)"],
+              ["신분당선", "rgb(212,0,59)"],
+              ["에버라인", "rgb(92,181,49)"],
+              ["의정부경전철", "rgb(248,177,0)"],
+              ["인천공항자기부상철도", "rgb(255,205,18)"],
+              ["인천지하철1호선", "rgb(151,187,223)"],
+              ["인천지하철2호선", "rgb(243,152,0)"],
+              ["광주지하철1호선", "rgb(0,144,136)"],
+              ["대구지하철1호선", "rgb(217,63,92)"],
+              ["대구지하철2호선", "rgb(0,170,128)"],
+              ["대구지하철3호선", "rgb(255,177,0)"],
+              ["대전지하철1호선", "rgb(0,116,72)"],
+              ["부산지하철1호선", "rgb(240,106,0)"],
+              ["부산지하철2호선", "rgb(129,191,72)"],
+              ["부산지하철3호선", "rgb(187,140,0)"],
+              ["부산지하철4호선", "rgb(33,125,203)"],
+              ["부산경전철", "rgb(134,82,161)"],
+              ["우이신설선", "rgb(176,206,24)"],
+              ["동해선", "rgb(0,61,165)"],
+              ["서해선", "rgb(129,169,20)"],
+              ["김포골드라인", "rgb(161,120,0)"],
+              ["신림선", "rgb(103,137,202)"]
+            ]
+          },
+          "fill-opacity": 1
+        }
+      },
+      {
+        "id": "road_seoul_label",
+        "type": "symbol",
+        "source": "road_seoul",
+        "source-layer": "N3L_A0020000_11",
+        "layout": {
+          "symbol-placement": "line",
+          "text-field": "{name}",
+          "text-font": ["Noto Sans KR Light"],
+          "text-letter-spacing": 0.1,
+          "text-rotation-alignment": "map",
+          "text-size": {
+            "base": 1.4,
+            "stops": [
+              [10, 8],
+              [20, 14]
+            ]
+          },
+          "text-transform": "uppercase",
+          "visibility": "visible"
+        },
+        "paint": {
+          "text-color": "#eee"
+        }
+      },
+      {
+        "id": "building_seoul",
+        "type": "fill",
+        "source": "building_seoul",
+        "source-layer": "N3A_B0010000_11",
+        "layout": {
+          "visibility": "none"
+        },
+        "paint": {
+          "fill-color": "#2d3a4d",
+          "fill-opacity": 1,
+          "fill-antialias": true
+        }
+      },
+      {
+        "id": "building_seoul_3d",
+        "type": "fill-extrusion",
+        "source": "building_seoul",
+        "source-layer": "N3A_B0010000_11",
+        "layout": {
+          "visibility": "visible"
+        },
+        "paint": {
+          "fill-extrusion-color": "#1a2636",
+          "fill-extrusion-height": [
+            "case",
+            ["!=", 0, ["to-number", ["get", "nmly"]]],
+            ["*", ["get", "nmly"], 3.5],
+            4
+          ],
+          "fill-extrusion-opacity": 1
+        }
+      }
+    ]
+  }
+}

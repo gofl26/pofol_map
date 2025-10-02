@@ -1,4 +1,5 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { Button } from './components/ui/button';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import './App.css';
@@ -22,6 +23,7 @@ function patchStyleHost(style: unknown): StyleSpecification {
 function App() {
   const mapContainer = useRef<HTMLDivElement>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
+  const [contourVisible, setContourVisible] = useState(false);
 
   useEffect(() => {
     if (mapContainer.current && !mapRef.current) {
@@ -43,6 +45,14 @@ function App() {
         const layer = mapRef.current?.queryRenderedFeatures(e.point)
         console.info(layer)
       });
+      // 최초 등고선 레이어 상태 반영
+      if (mapRef.current) {
+        mapRef.current.setLayoutProperty(
+          "contour_line_3d",
+          "visibility",
+          contourVisible ? "visible" : "none"
+        );
+      }
     });
     return () => {
       if (mapRef.current) {
@@ -50,10 +60,29 @@ function App() {
         mapRef.current = null;
       }
     };
+    // contourVisible은 의존성에서 제외 (토글은 별도 useEffect에서 처리)
+    // eslint-disable-next-line
   }, []);
 
+  // contourVisible이 바뀔 때마다 레이어 visibility 토글
+  useEffect(() => {
+    if (mapRef.current && mapRef.current.isStyleLoaded()) {
+      mapRef.current.setLayoutProperty(
+        "contour_line_3d",
+        "visibility",
+        contourVisible ? "visible" : "none"
+      );
+    }
+  }, [contourVisible]);
+
   return (
-    <div className="w-7xl h-screen flex items-center justify-center bg-background text-foreground">
+    <div className="w-7xl h-screen flex items-center justify-center bg-background text-foreground relative">
+      <Button
+        className="absolute top-4 right-4 z-10 px-4 py-2 bg-blue-700 text-white rounded shadow hover:bg-blue-800 transition"
+        onClick={() => setContourVisible((v) => !v)}
+      >
+        {contourVisible ? '등고선 숨기기' : '등고선 보기'}
+      </Button>
       <div ref={mapContainer} className="w-full h-full" />
     </div>
   );

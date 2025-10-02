@@ -32,6 +32,10 @@
         "url": "https://martin.ssrhouse.store/TB_FGDI_CNMP_ALL",
         "type": "vector"
       },
+      "contour_line": {
+        "url": "https://martin.ssrhouse.store/N3L_F0010000_11",
+        "type": "vector"
+      },
       "road_seoul": {
         "url": "https://martin.ssrhouse.store/N3L_A0020000_11",
         "type": "vector"
@@ -171,16 +175,39 @@
             11,
             0.7
           ],
-          "fill-antialias": true,
-          "fill-outline-color": [
-            "interpolate",
-            ["exponential", 1.5],
-            ["zoom"],
-            18,
-            "rgba(148, 173, 202, 0.4)",
-            24,
-            "rgba(148, 173, 202, 0.7)"
-          ]
+          "fill-antialias": true
+        }
+      },
+      {
+        "id": "contour_line",
+        "type": "line",
+        "source": "contour_line",
+        "source-layer": "N3L_F0010000_11",
+        "minzoom": 10.5,
+        "maxzoom": 16,
+        "layout": {
+          "visibility": "none"
+        },
+        "paint": {
+          "line-color": "#7faaff",
+          "line-width": 0.7,
+          "line-opacity": 0.5
+        }
+      },
+      {
+        "id": "contour_line_3d",
+        "type": "fill-extrusion",
+        "source": "contour_line",
+        "source-layer": "N3L_F0010000_11",
+        "minzoom": 13,
+        "maxzoom": 16,
+        "layout": {
+          "visibility": "none"
+        },
+        "paint": {
+          "fill-extrusion-color": "#7faaff",
+          "fill-extrusion-height": ["get", "cont"],
+          "fill-extrusion-opacity": 0.5
         }
       },
       {
@@ -218,13 +245,41 @@
         }
       },
       {
+        "id": "road_seoul_label",
+        "type": "symbol",
+        "source": "road_seoul",
+        "source-layer": "N3L_A0020000_11",
+        "minzoom": 13.8,
+        "layout": {
+          "symbol-placement": "line",
+          "text-field": "{name}",
+          "text-font": ["Noto Sans KR Light"],
+          "text-letter-spacing": 0.1,
+          "text-rotation-alignment": "map",
+          "text-size": {
+            "base": 1.4,
+            "stops": [
+              [10, 8],
+              [20, 14]
+            ]
+          },
+          "text-transform": "uppercase",
+          "visibility": "visible"
+        },
+        "paint": {
+          "text-color": "#eee"
+        }
+      },
+      {
         "id": "TN_EX_SUBWLN_L",
         "type": "line",
         "metadata": { "maputnik:comment": "지하철노선_L12-14" },
         "source": "tn_ex_subwln_l",
         "source-layer": "tn_ex_subwln_l",
-        "minzoom": 13,
-        "layout": { "visibility": "visible" },
+        "minzoom": 13.8,
+        "layout": {
+          "visibility": "visible"
+        },
         "paint": {
           "line-color": {
             "property": "name",
@@ -284,7 +339,16 @@
               ["RRC002", 4.5]
             ],
             "default": 2
-          }
+          },
+          "line-opacity": [
+            "interpolate",
+            ["exponential", 1.5],
+            ["zoom"],
+            13.8,
+            0,
+            14.4,
+            1
+          ]
         }
       },
       {
@@ -293,8 +357,10 @@
         "metadata": { "maputnik:comment": "지하철역사" },
         "source": "tn_ex_subwa_a",
         "source-layer": "tn_ex_subwa_a",
-        "minzoom": 16,
-        "layout": { "visibility": "visible" },
+        "minzoom": 13.8,
+        "layout": {
+          "visibility": "visible"
+        },
         "paint": {
           "fill-color": {
             "property": "line_name",
@@ -338,17 +404,54 @@
               ["신림선", "rgb(103,137,202)"]
             ]
           },
-          "fill-opacity": 1
+          "fill-opacity": [
+            "interpolate",
+            ["exponential", 1.5],
+            ["zoom"],
+            13.8,
+            0,
+            14.4,
+            1
+          ]
         }
       },
       {
-        "id": "road_seoul_label",
+        "id": "TN_EX_SUBWLN_L_label",
         "type": "symbol",
-        "source": "road_seoul",
-        "source-layer": "N3L_A0020000_11",
+        "source": "tn_ex_subwln_l",
+        "source-layer": "tn_ex_subwln_l",
+        "minzoom": 13.8,
         "layout": {
           "symbol-placement": "line",
+          "symbol-spacing": 500,
           "text-field": "{name}",
+          "text-font": ["Noto Sans KR Light"],
+          "text-letter-spacing": 0.1,
+          "text-rotation-alignment": "map",
+          "text-size": {
+            "base": 1.4,
+            "stops": [
+              [10, 8],
+              [20, 14]
+            ]
+          },
+          "text-transform": "uppercase",
+          "visibility": "visible"
+        },
+        "paint": {
+          "text-color": "#eee"
+        }
+      },
+      {
+        "id": "TN_EX_SUBWA_A_label",
+        "type": "symbol",
+        "source": "tn_ex_subwa_a",
+        "source-layer": "tn_ex_subwa_a",
+        "minzoom": 13.8,
+        "layout": {
+          "symbol-placement": "line",
+          "symbol-spacing": 500,
+          "text-field": "{st_name}",
           "text-font": ["Noto Sans KR Light"],
           "text-letter-spacing": 0.1,
           "text-rotation-alignment": "map",
@@ -371,12 +474,14 @@
         "type": "fill",
         "source": "building_seoul",
         "source-layer": "N3A_B0010000_11",
+        "minzoom": 13.5,
+        "maxzoom": 13.8,
         "layout": {
-          "visibility": "none"
+          "visibility": "visible"
         },
         "paint": {
           "fill-color": "#2d3a4d",
-          "fill-opacity": 1,
+          "fill-opacity": 0.7,
           "fill-antialias": true
         }
       },
@@ -385,6 +490,7 @@
         "type": "fill-extrusion",
         "source": "building_seoul",
         "source-layer": "N3A_B0010000_11",
+        "minzoom": 13.8,
         "layout": {
           "visibility": "visible"
         },
@@ -396,7 +502,7 @@
             ["*", ["get", "nmly"], 3.5],
             4
           ],
-          "fill-extrusion-opacity": 1
+          "fill-extrusion-opacity": 0.7
         }
       }
     ]
